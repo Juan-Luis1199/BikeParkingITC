@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB_BikeParking_ITC</title>
+    <link rel="stylesheet" href="estilotabla.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+
+<body>
+    <h1>Registro de actividades</h1>
+    <div id="root"></div>
+    <script>
+        //Your web app´s Firebase configuration 
+        var firebaseConfig = {
+            apiKey: "AIzaSyCoYINUHt7t-iQyRYdfre1Vo6E0UJ9yhCA",
+            authDomain: "estacionamiento-iot-fcc27.firebaseapp.com",
+            databaseURL: "https://estacionamiento-iot-fcc27-default-rtdb.firebaseio.com",
+            projectId: "estacionamiento-iot-fcc27",
+            storageBucket: "estacionamiento-iot-fcc27.appspot.com",
+            messagingSenderId: "182514323123",
+            appId: "1:182514323123:web:f05289b24c5b853e7e2ac6",
+            measurementId: "G-R4PWH6S6C9"
+        };
+        //Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var firebaseRef = firebase.database().ref("Datos_de_seguridad");
+        firebaseRef.on("value", function(snapshot) {
+            snapshot.forEach(function(element) {
+                document.querySelector('#root').innerHTML += `
+                    <div>${element.val()}</div>
+                `
+            });
+        });
+
+    </script>
+</body>
+</html>
